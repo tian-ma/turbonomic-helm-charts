@@ -7,7 +7,7 @@ replicaCount: 1
 # Replace the image with desired version
 image:
   repository: icr.io/cpopen/turbonomic/kubeturbo
-  tag: 8.11.2
+  tag: 8.14.2
   pullPolicy: IfNotPresent
 #  busyboxRepository: busybox
 #  imagePullSecret: ""
@@ -16,8 +16,8 @@ image:
 annotations:
   kubeturbo.io/controllable: "false"
 
-#nameOverride: ""
-#fullnameOverride: ""
+# nameOverride: ""
+# fullnameOverride: ""
 
 # Specify 'turbo-cluster-reader' or 'turbo-cluster-admin' as role name instead of the default using
 # the 'cluster-admin' role. A cluster role with this name will be created during deployment
@@ -63,7 +63,7 @@ targetConfig:
 # In kubeturbo 6.4.3+, you can define what nodes should stay high-available based on the node role
 # Master nodes are by default populated by --set HANodeConfig.nodeRoles="\"foo\"\,\"bar\""
 HANodeConfig:
-  nodeRoles: "\"master\""
+  nodeRoles: '"master"'
 
 # In kubeturbo 6.3+, you can define how daemon pods are identified. Use either or both
 # Note if you do not enable daemonPodDetectors, the default is to identify all pods running as kind = daemonSet
@@ -73,15 +73,15 @@ daemonPodDetectors:
   podNamePatterns: []
 
 # The annotationWhitelist allows users to define regular expressions to allow kubeturbo to collect
-# matching annotations for the specified entity type. By default, no annotations are collected. 
+# matching annotations for the specified entity type. By default, no annotations are collected.
 # These regular expressions accept the RE2 syntax (except for \C) as defined here: https://github.com/google/re2/wiki/Syntax
 # annotationWhitelist:
 #   containerSpec: ""
 #   namespace: ""
 #   workloadController: ""
 
-# The featureGates property defines a map of string-to-boolean values that provides users with a mechanism 
-# to enable/disable features. For a list of supported feature gates, see 
+# The featureGates property defines a map of string-to-boolean values that provides users with a mechanism
+# to enable/disable features. For a list of supported feature gates, see
 # https://github.com/turbonomic/kubeturbo/blob/master/pkg/features/features.go
 # featureGates:
 #   PersistentVolumes: true (default: true)
@@ -95,12 +95,12 @@ daemonPodDetectors:
 logging:
   level: 2
 # Define the default values for your cluster configuration
-# `nodePoolSize.min`: This parameter defines the minimum number of nodes allowed in the node pool. 
-#             It ensures that the node pool remains resilient and can continue its normal operations even if some nodes become 
-#             unavailable due to hardware failures or other issues. The minimum number of nodes should be set based on the desired 
+# `nodePoolSize.min`: This parameter defines the minimum number of nodes allowed in the node pool.
+#             It ensures that the node pool remains resilient and can continue its normal operations even if some nodes become
+#             unavailable due to hardware failures or other issues. The minimum number of nodes should be set based on the desired
 #             level of resiliency and the specific requirements of the applications running in the node pool.
-# `nodePoolSize.max`: This parameter defines the maximum number of nodes allowed in the node pool. It prevents the cluster from growing 
-#             uncontrollably and helps manage the available resources efficiently. The maximum number of nodes should be set based 
+# `nodePoolSize.max`: This parameter defines the maximum number of nodes allowed in the node pool. It prevents the cluster from growing
+#             uncontrollably and helps manage the available resources efficiently. The maximum number of nodes should be set based
 #             on the available resources in the environment, such as IP addresses, CPU, memory, storage capacity, and networking bandwidth.
 #             It should also consider the application requirements and performance characteristics of the workloads running on the node pool.
 nodePoolSize:
@@ -110,7 +110,7 @@ nodePoolSize:
 # Cluster Role rules for ORM owners.
 # It's required when using ORM with ClusterRole 'turbo-cluster-admin'.
 # It's recommended to use ORM with ClusterRole 'cluster-admin'.
-ormOwners: 
+ormOwners:
   apiGroup:
     # - redis.redis.opstreelabs.in
     # - charts.helm.k8s.io
@@ -123,22 +123,22 @@ ormOwners:
 systemWorkloadDetectors:
   # A list of regular expressions that match the namespace names for system workloads.
   namespacePatterns:
-  - kube-.*
-  - openshift-.*
-  - cattle.*
+    - kube-.*
+    - openshift-.*
+    - cattle.*
 
 # List operator-controlled workloads by name or namespace (using regular expressions)
-# that should be excluded from the operator-controlled WorkloadController resize policy. 
+# that should be excluded from the operator-controlled WorkloadController resize policy.
 # By default, matching workloads will generate actions that are not in Recommend mode.
 # exclusionDetectors:
-  # A list of regular expressions representing operator-controlled Workload Controllers. 
-  # operatorControlledWorkloadsPatterns:
-  # - example-.*
-  # - .*-example
-  # A list of regular expressions representing namespaces containing operator-controlled 
-  # Workload Controllers. 
-  # operatorControlledNamespacePatterns:
-  # - .*-example.*
+# A list of regular expressions representing operator-controlled Workload Controllers.
+# operatorControlledWorkloadsPatterns:
+# - example-.*
+# - .*-example
+# A list of regular expressions representing namespaces containing operator-controlled
+# Workload Controllers.
+# operatorControlledNamespacePatterns:
+# - .*-example.*
 
 args:
   # logging level
@@ -162,11 +162,9 @@ resources: {}
 wiremock:
   enabled: false
   url: wiremock:8080
-
 # Discovery-related configurations
 # discovery:
 #   # time delay (in milliseconds) between transmissions of chunked discovery data
 #   chunkSendDelayMillis: 0
 #   # desired size (in number of DTOs) of discovery data chunks
 #   numObjectsPerChunk: 5000
-
