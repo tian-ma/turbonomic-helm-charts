@@ -13,8 +13,8 @@ You can then run `helm search repo turbo-charts` to see the charts.
 
 To install the kubeturbo chart:
 
-    helm install my-<chart-name> turbo-charts/kubeturbo
+    helm install my-kubeturbo turbo-charts/kubeturbo
 
 To uninstall the chart:
 
-    helm delete my-<chart-name>
+    helm delete my-kubeturbo
