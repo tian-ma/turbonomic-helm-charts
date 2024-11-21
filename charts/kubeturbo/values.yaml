@@ -20,8 +20,8 @@ annotations:
 # fullnameOverride: ""
 
 # Specify one or more kubeturbo pod scheduling constraints in the cluster
-# See https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/ for examples on 
-# nodeSelector, affinity, tolerations 
+# See https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/ for examples on
+# nodeSelector, affinity, tolerations
 kubeturboPodScheduling:
   nodeSelector:
   affinity:
