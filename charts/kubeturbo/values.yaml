@@ -139,13 +139,13 @@ systemWorkloadDetectors:
 # that should be excluded from the operator-controlled WorkloadController resize policy.
 # By default, matching workloads will generate actions that are not in Recommend mode.
 # exclusionDetectors:
-#  # A list of regular expressions representing operator-controlled Workload Controllers.
-#  operatorControlledWorkloadsPatterns:
-#  - example-.*
-#  - .*-example
-#  # A list of regular expressions representing namespaces containing operator-controlled Workload Controllers.
-#  operatorControlledNamespacePatterns:
-#  - .*-example.*
+#   # A list of regular expressions representing operator-controlled Workload Controllers.
+#   operatorControlledWorkloadsPatterns:
+#     - example-.*
+#     - .*-example
+#   # A list of regular expressions representing namespaces containing operator-controlled Workload Controllers.
+#   operatorControlledNamespacePatterns:
+#     - .*-example.*
 
 args:
   # logging level
