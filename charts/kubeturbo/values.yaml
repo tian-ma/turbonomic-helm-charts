@@ -7,7 +7,7 @@ replicaCount: 1
 # Replace the image with desired version
 image:
   repository: icr.io/cpopen/turbonomic/kubeturbo
-  tag: 8.14.2
+  tag: 8.14.4
   pullPolicy: IfNotPresent
 #  busyboxRepository: busybox
 #  imagePullSecret: ""
@@ -18,6 +18,14 @@ annotations:
 
 # nameOverride: ""
 # fullnameOverride: ""
+
+# Specify one or more kubeturbo pod scheduling constraints in the cluster
+# See https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/ for examples on 
+# nodeSelector, affinity, tolerations 
+kubeturboPodScheduling:
+  nodeSelector:
+  affinity:
+  tolerations:
 
 # Specify 'turbo-cluster-reader' or 'turbo-cluster-admin' as role name instead of the default using
 # the 'cluster-admin' role. A cluster role with this name will be created during deployment
@@ -31,7 +39,7 @@ roleBinding: "turbo-all-binding"
 # Specify the name of the serviceaccount
 serviceAccountName: "turbo-user"
 
-# Turbo server  address
+# Turbo server address
 serverMeta:
   turboServer: https://Turbo_server_URL
 #  proxy: http://username:password@proxyserver:proxyport or http://proxyserver:proxyport
@@ -131,14 +139,13 @@ systemWorkloadDetectors:
 # that should be excluded from the operator-controlled WorkloadController resize policy.
 # By default, matching workloads will generate actions that are not in Recommend mode.
 # exclusionDetectors:
-# A list of regular expressions representing operator-controlled Workload Controllers.
-# operatorControlledWorkloadsPatterns:
-# - example-.*
-# - .*-example
-# A list of regular expressions representing namespaces containing operator-controlled
-# Workload Controllers.
-# operatorControlledNamespacePatterns:
-# - .*-example.*
+#  # A list of regular expressions representing operator-controlled Workload Controllers.
+#  operatorControlledWorkloadsPatterns:
+#  - example-.*
+#  - .*-example
+#  # A list of regular expressions representing namespaces containing operator-controlled Workload Controllers.
+#  operatorControlledNamespacePatterns:
+#  - .*-example.*
 
 args:
   # logging level

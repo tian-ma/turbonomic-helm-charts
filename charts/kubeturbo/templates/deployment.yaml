@@ -30,6 +30,15 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.image.imagePullSecret }}
 {{- end }}
+{{- if .Values.kubeturboPodScheduling.nodeSelector }}
+      nodeSelector: {{- .Values.kubeturboPodScheduling.nodeSelector | toYaml | nindent 8 }}
+{{- end }}
+{{- if .Values.kubeturboPodScheduling.affinity }}
+      affinity: {{- .Values.kubeturboPodScheduling.affinity | toYaml | nindent 8 }}
+{{- end }}
+{{- if .Values.kubeturboPodScheduling.tolerations }}
+      tolerations: {{- .Values.kubeturboPodScheduling.tolerations | toYaml | nindent 8 }}
+{{- end }}
       containers:
         - name: {{ .Chart.Name }}
           env:
