@@ -48,7 +48,6 @@ metadata:
   # Use this yaml to create a binding that will assign prometurbo ClusterRole to your prometurbo ServiceAccount
   # Provide a value for the binding name, and update namespace of the ServiceAccount if needed
   name: prometurbo-binding
-  namespace: turbo
 subjects:
   - kind: ServiceAccount
     name: prometurbo
@@ -143,7 +142,7 @@ data:
           "turboServer": "https://<TURBO-SERVER-ADDRESS>:<PORT>"
         },
         "restAPIConfig": {
-          "opsManagerUserName": "administrator",
+          "opsManagerUserName": "<TURBO-SERVER-USERNAME>",
           "opsManagerPassword": "<TURBO-SERVER-PASSWORD>"
         },
         "sdkProtocolConfig": {
@@ -199,6 +198,6 @@ metadata:
   namespace: turbo
 type: Opaque
 data:
-  username: YWRtaW5pc3RyYXRvcg== #####<replace with base64 encoded value>
-  password: dG9wc2VjcmV0 #####<replace with base64 encoded value>
+  clientid: <BASE64encodedValue>
+  clientsecret: <BASE64encodedValue>
 ---

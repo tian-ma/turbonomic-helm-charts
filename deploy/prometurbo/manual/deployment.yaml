@@ -2,17 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometurbo
+  namespace: turbo
   labels:
-    app: prometurbo
+    app.kubernetes.io/name: prometurbo
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
   selector:
     matchLabels:
-      app: prometurbo
+      app.kubernetes.io/name: prometurbo
   template:
     metadata:
       labels:
-        app: prometurbo
+        app.kubernetes.io/name: prometurbo
     spec:
       # Update serviceAccount if needed
       serviceAccountName: prometurbo
@@ -43,6 +46,9 @@ spec:
           - name: turbodif-config
             mountPath: /etc/turbodif
             readOnly: true
+          - name: turbonomic-credentials-volume
+            mountPath: /etc/turbonomic-credentials
+            readOnly: true
           - name: varlog
             mountPath: /var/log
       volumes:
@@ -52,6 +58,11 @@ spec:
         - name: turbodif-config
           configMap:
             name: turbodif-config
+        - name: turbonomic-credentials-volume
+          secret:
+            defaultMode: 420
+            optional: true
+            secretName: turbonomic-credentials
         - name: varlog
           emptyDir: {}
       restartPolicy: Always

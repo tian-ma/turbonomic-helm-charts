@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometurbo-config
+  namespace: turbo
 data:
   businessapp.config: |-
     # This configuration defines business applications and their associated business transactions
